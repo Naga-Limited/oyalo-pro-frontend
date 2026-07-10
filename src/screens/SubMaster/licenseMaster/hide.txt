@@ -1,0 +1,468 @@
+// // import React, {useState} from 'react';
+// // import {Card, Button, Col, Row, Form, Input, Radio,Select} from 'antd';
+// // import {useLocation, useNavigate} from 'react-router';
+// // import {useDispatch, useSelector} from 'react-redux';
+// // import messageToast from '../../../components/messageToast/messageToast';
+// // import {saveLicense, updateLicense} from '../../../@app/subMaster/subMasterSlice';
+// // import {transStatus} from '../../../util/transStatus';
+// // import ConfirmOnExit from '../../../components/confirmOnExit/ConfirmOnExit';
+// // const {Option} = Select;
+// // //import { Controller} from 'react-hook-form';
+// // //const {Option} = Select;
+// // function LicenseForm() {
+// //   const [form] = Form.useForm();
+// //   const navigate = useNavigate();
+// //   const dispatch = useDispatch();
+// //   const [showDialog, setShowDialog] = useState(false);
+
+// //   const {savingLicense} = useSelector((state) => {
+// //     return state.subMaster;
+// //   });
+// //   //const [type, setType] = useState(mode === 'edit' ? state?.auditType : null);
+// //   const {
+// //     state: {data: defaultValue, isEdit = false}
+// //   } = useLocation();
+
+// //   const [status, setStatus] = useState(defaultValue?.status ?? 1);
+// //   // const children = [];
+// //   // children.push(<Option key={'Sunday'} value='Sunday'>Sunday</Option>);
+// //   // children.push(<Option key={'Monday'} value='Monday'>Monday</Option>);
+// //   // children.push(<Option key={'Tuesday'} value='Tuesday'>Tuesday</Option>);
+// //   // children.push(<Option key={'Wednesday'} value='Wednesday'>Wednesday</Option>);
+// //   // children.push(<Option key={'Thursday'} value='Thursday'>Thursday</Option>);
+// //   // children.push(<Option key={'Friday'} value='Friday'>Friday</Option>);
+// //   // children.push( <Option key={'Saturday'} value='Saturday'>Saturday</Option>);
+// // // for (let i = 10; i < 36; i++) 
+// // //   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+// // // }
+
+// //   const onFinish = (data) => {
+// //     //alert(defaultValue.id);
+// //     setShowDialog(false);
+// //     dispatch(defaultValue?.id ? updateLicense({data: {...data, status: transStatus({status}), id: defaultValue.id,day_type: data.day_type}}) : saveLicense({data})).then(
+// //       ({message, status, statusText}) => {
+// //         if (status === 200) {
+// //           navigate('/licenseMaster');
+// //           form.resetFields();
+// //         }
+// //         messageToast({message: message ?? statusText, status, title: 'License Master'});
+// //       }
+// //     );
+// //   };
+
+// //   const handleClickBack = () => {
+// //     navigate('/licenseMaster');
+// //   };
+
+// //   return (
+// //     <>
+// //       <Card>
+// //         <ConfirmOnExit showModel={showDialog} />
+// //         <Row style={{justifyContent: 'center'}}>
+// //           <Col span={24}>
+// //             <Form
+// //               onFieldsChange={() => setShowDialog(true)}
+// //               name='basic'
+// //               labelCol={{span: 24}}
+// //               wrapperCol={{span: 24}}
+// //               initialValues={{
+// //                 //...defaultValue,
+// //                 name: defaultValue?.name,
+// //                 day_type: defaultValue?.day_type,
+// //                 status: defaultValue?.status ?? 1, ...defaultValue
+// //               }}
+// //               onFinish={onFinish}
+// //               autoComplete='off'
+// //               form={form}>
+// //               <Row gutter={[15, 0]}>
+// //                 <Col md={{span: 6}} xs={{span: 24}}>
+// //                   <Form.Item name='name' label='Add License' rules={[{required: true, message: 'Please select add License Name'}]}>
+// //                     <Input name='name' placeholder='Enter License' disabled={savingLicense}  defaultValue={defaultValue?.name}/>
+// //                   </Form.Item>
+// //                 </Col>
+// //                 {/* <Col md={{ span: 6 }} xs={{ span: 24 }}>
+// //                   <Form.Item name='Renewal' label='Email Start Days' rules={[{ required: true, message: 'Please select add Renewal' }]}>
+// //                     <Input name='Renewal' onChange={handleOnChange} placeholder='Enter Renewal' disabled={savingPeriod} defaultValue={defaultValue?.Renewal} />
+// //                   </Form.Item>
+// //                 </Col> */}
+
+// //                         {/* {/* <Col md={{span: 6}} xs={{span: 24}}>
+// //                   <Form.Item name='audit_type' label='Audit Type' rules={[{required: true, message: 'Please select category'}]}>
+// //                     <Controller
+// //                       control=""
+// //                       name='audit_type'
+// //                       render={({field: {onChange}}) => (
+// //                         <Select
+// //                           defaultValue=""
+// //                           disabled=""
+// //                           onChange={(e) => {
+// //                             onChange(e);
+// //                            // setType(e);
+// //                           }}
+// //                           placeholder='Select'
+// //                           showSearch
+// //                           filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}>
+// //                           <Select.Option key={1} value={1}>
+// //                             Full
+// //                           </Select.Option>
+// //                           <Select.Option key={2} value={2}>
+// //                             Category Wise
+// //                           </Select.Option>
+// //                         </Select>
+// //                       )}
+// //                     />
+                  
+// //                   </Form.Item>
+// //                 </Col> */}
+// //               <Col md={{span: 6}} xs={{span: 24}}>
+// //               <Form.Item name='day_type' label='Day Type' rules={[{required: true, message: 'Please select days'}]}>
+// //               <Select
+// //                       placeholder='select'
+// //                       mode='multiple'
+// //                       defaultValue={defaultValue?.day_type}
+// //                       //onChange={(e) => setNewEmployee(e)}
+// //                       name="day_type"
+                     
+// //                       showSearch
+                     
+// //                       filterOption={(input, option) => option.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0}>
+// //                       {["Sunday","Monday","Tuesday"].map(item => 
+                          
+// //                             <Option key={item} value={item}>
+// //                               {item}
+// //                             </Option>
+                         
+// //                         )}
+                       
+                     
+// //                     </Select>  
+                
+                
+// //                 {/* <Select
+// //     mode="multiple"
+// //     style={{ width: '100%' }}
+// //     name='day_type[]'
+// //     defaultValue={defaultValue?.day_type}
+// //     placeholder="Please select"
+// //     //defaultValue={['Sunday']}
+// //     //onChange={handleChange}
+// //   >
+// //   <Option value="Sunday">Sunday</Option>
+// //   <Option value="Monday">Monday</Option>
+// //   <Option value="Tuesday">Tuesday</Option>
+// //   <Option value="Wednesday">Wednesday</Option>
+// //   <Option value="Thursday">Thursday</Option>
+// //   <Option value="Friday">Friday</Option>
+// //   <Option value="Saturday">Saturday</Option>
+// //   </Select> */}
+// //   </Form.Item>
+// //                 </Col>
+
+// //                 <Col span={24}>
+// //                   <Form.Item name='status' label='Status ' rules={[{required: true, message: 'Please slect your status'}]}>
+// //                     <Col span={24}>
+// //                       <Radio.Group
+// //                         buttonStyle='solid'
+// //                         onChange={(e) => {
+// //                           setStatus(e?.target?.value);
+// //                         }}
+// //                         size='small'
+// //                         defaultValue={defaultValue?.status === 'Active' ? 1 : 0}>
+// //                         <Radio.Button className='active' value={1}>
+// //                           Active
+// //                         </Radio.Button>
+// //                         <Radio.Button className='in-active' value={0}>
+// //                           In-Active
+// //                         </Radio.Button>
+// //                       </Radio.Group>
+// //                     </Col>
+// //                   </Form.Item>
+// //                 </Col>
+// //                 <Col span={24}>
+// //                   <Row gutter={[15, 15]} style={{justifyContent: 'end'}}>
+// //                     <Col span={12} style={{textAlign: 'right'}} className='d-flex align-items-center justify-content-end mt-3'>
+// //                       <Form.Item className='mx-2'>
+// //                         <Button className='orangeFactory' type='primary' htmlType='submit' loading={savingLicense} disabled={savingLicense}>
+// //                           {isEdit ? 'Update' : 'Add'}
+// //                         </Button>
+// //                       </Form.Item>
+// //                       {/* </Col>
+// //                     <Col span={12}> */}
+// //                       <Form.Item>
+// //                         <Button onClick={handleClickBack} disabled={savingLicense}>
+// //                           Back
+// //                         </Button>
+// //                       </Form.Item>
+// //                     </Col>
+// //                   </Row>
+// //                 </Col>
+// //               </Row>
+// //             </Form>
+// //           </Col>
+// //         </Row>
+// //       </Card>
+// //     </>
+// //   );
+// // }
+
+// // export default LicenseForm;
+
+// import React, {useState,useEffect} from 'react';
+// import {Card, Button, Col, Row, Form, Input, Radio,Select} from 'antd';
+// import {useLocation, useNavigate} from 'react-router';
+// import {useDispatch, useSelector} from 'react-redux';
+// import messageToast from '../../../components/messageToast/messageToast';
+// import {saveLicense, updateLicense,getDays} from '../../../@app/subMaster/subMasterSlice';
+// import {map} from 'ramda';
+// import {transStatus} from '../../../util/transStatus';
+// import ConfirmOnExit from '../../../components/confirmOnExit/ConfirmOnExit';
+// const {Option} = Select;
+// //import { Controller} from 'react-hook-form';
+// //const {Option} = Select;
+// function LicenseForm() {
+//   const [form] = Form.useForm();
+//   const navigate = useNavigate();
+//   const dispatch = useDispatch();
+//   const [showDialog, setShowDialog] = useState(false);
+//   const {
+//     getDaysResponse: {data: days},
+//     gettingDays
+//   } = useSelector((state) => {
+//     return state.subMaster;
+//   });
+// console.log(days);
+//   const {savingLicense} = useSelector((state) => {
+//     return state.subMaster;
+//   });
+//   //const [type, setType] = useState(mode === 'edit' ? state?.auditType : null);
+//   const {
+//     state: {data: defaultValue, isEdit = false}
+//   } = useLocation();
+//   //const [roleSelected, setRoleSelected] = useState('');
+//   useEffect(() => {
+//     dispatch(getDays());
+//     //console.log(getDays)
+//   }, [dispatch]);
+
+//   const [status, setStatus] = useState(defaultValue?.status ?? 1);
+//   // const options = [
+//   //   {
+//   //     label: "Sunday",
+//   //     value: "1",
+//   //   },
+//   //   {
+//   //     label: "Monday",
+//   //     value: "2",
+//   //   },
+//   //   {
+//   //     label: "Tuesday",
+//   //     value: "3",
+//   //   },
+//   //   {
+//   //     label: "Wednesday",
+//   //     value: "4",
+//   //   },
+//   //   {
+//   //     label: "Thursday",
+//   //     value: "5",
+//   //   },
+//   //   {
+//   //     label: "Friday",
+//   //     value: "6",
+//   //   },{
+//   //     label: "Saturday",
+//   //     value: "7",
+//   //   },
+//   // ];
+  
+
+
+//   const onFinish = (data) => {
+//     //const day_type=[];
+//     //const day_types=defaultValue.day_type;
+//    // alert(day_types);
+//     setShowDialog(false);
+//     dispatch(defaultValue?.id ? updateLicense({data: {...data, status: transStatus({status}), id: defaultValue.id,day_type: data.day_type}}) : saveLicense({data})).then(
+//       ({message, status, statusText}) => {
+//         if (status === 200) {
+//           navigate('/licenseMaster');
+//           form.resetFields();
+//         }
+//         messageToast({message: message ?? statusText, status, title: 'License Master'});
+//       }
+//     );
+//   };
+
+//   const handleClickBack = () => {
+//     navigate('/licenseMaster');
+//   };
+
+
+//   const handleOnChange = (e) => {
+//     if ((e.target.name === 'price') || (e.target.name === 'fine') ) {
+//       return form.setFieldsValue({
+//         [e.target.name]: e.target.value.replace(/[^0-9 ./]/g, '')
+//       });
+//     }
+//   };
+
+//   return (
+//     <>
+//       <Card>
+//         <ConfirmOnExit showModel={showDialog} />
+//         <Row style={{justifyContent: 'center'}}>
+//           <Col span={24}>
+//             <Form
+//               onFieldsChange={() => setShowDialog(true)}
+//               name='basic'
+//               labelCol={{span: 24}}
+//               wrapperCol={{span: 24}}
+//               initialValues={{
+//                 ...defaultValue,
+//                 //name: defaultValue?.name,
+                
+//                 day_type: defaultValue?.day_type,
+//                 price: defaultValue?.price,
+//                 fine: defaultValue?.fine,
+//                 status: defaultValue?.status ?? 0, ...defaultValue
+//               }}
+//               onFinish={onFinish}
+//               autoComplete='off'
+//               form={form}>
+//               <Row gutter={[15, 0]}>
+//                 <Col md={{span: 6}} xs={{span: 24}}>
+//                   <Form.Item name='name' label='Add License' rules={[{required: true, message: 'Please select add License Name'}]}>
+//                     <Input name='name' placeholder='Enter License' disabled={savingLicense}  defaultValue={defaultValue?.name}/>
+//                   </Form.Item>
+//                 </Col>
+//                 <Col md={{span: 6}} xs={{span: 24}} lg={4}>
+//                   <Form.Item name='day_type' label='Days' rules={[{required: true, message: 'Please select days'}]} >
+//                     <Select
+//                       placeholder='Select days'
+//                       mode='multiple'
+//                       loading={gettingDays}
+//                       onChange={this.handleSelectAll}
+//                       //disabled={savingAuditSubCategory || defaultValue?.auditcategory_status === '0'}
+//                       showSearch
+//                       filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}>
+//                       {map(
+//                         (days) => {
+//                           return (
+//                             <Option key={days.id} value={days.name}>
+//                               {days.name}
+//                             </Option>
+//                           );
+//                         },
+//                         days ? days : []
+//                       )}
+//                     </Select>
+//                   </Form.Item>
+//                 </Col>
+//                 <Col md={{span: 6}} xs={{span: 24}}>
+//                   <Form.Item name='price' label='Add License Amount' rules={[{required: true, message: 'Please select add License price'}]}>
+//                     <Input name='price' onChange={handleOnChange} placeholder='Enter License Amount' disabled={savingLicense}  defaultValue={defaultValue?.price}/>
+//                   </Form.Item>
+//                 </Col>
+
+//                 <Col md={{span: 6}} xs={{span: 24}}>
+//                   <Form.Item name='fine' label='Add License Fine %' rules={[{required: true, message: 'Please select add License fine%'}]}>
+//                     <Input name='fine' placeholder='Enter License Fine%' onChange={handleOnChange} disabled={savingLicense}  defaultValue={defaultValue?.fine}/>
+//                   </Form.Item>
+//                 </Col>
+
+//                 {/* <Form.Item name='stateID' label='State' rules={[{required: true, message: 'Please select state'}]}>
+//                     <Select
+//                       placeholder='Select'
+//                       multiple
+//                       //disabled={savingZonal}
+//                       loading={gettingDays}
+//                       //defaultValue={defaultValue?.state_id}
+//                       showSearch
+//                       filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}>
+//                       {map(
+//                         (days) => {
+//                           return (
+//                             <Option key={days.id} value={days.id}>
+//                               {days.name}
+//                             </Option>
+//                           );
+//                         },
+//                         days ? days?.filter((e) => e.status === '1') : []
+//                       )}
+//                     </Select>
+//                   </Form.Item> */}
+                
+               
+//               {/* <Col md={{span: 6}} xs={{span: 24}}>
+//               <Form.Item name='day_type' label='Day Type' rules={[{required: true, message: 'Please select days'}]}>
+//               <Select
+//                       placeholder='select'
+//                       mode='multiple'
+                 
+                      
+//                       name="day_type"
+                     
+//                       showSearch
+                      
+//                       filterOption={(input, option) => option.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0}>
+                     
+//                         {options.map((option) => (
+//               <Option key={option.value} value={option.value}>{option.label}</Option>
+//             ))}
+                       
+                     
+//                     </Select>  
+                
+             
+//   </Form.Item>
+//                 </Col> */}
+
+//                 <Col span={24}>
+//                   <Form.Item name='status' label='Status ' rules={[{required: true, message: 'Please slect your status'}]}>
+//                     <Col span={24}>
+//                       <Radio.Group
+//                         buttonStyle='solid'
+//                         onChange={(e) => {
+//                           setStatus(e?.target?.value);
+//                         }}
+//                         size='small'
+//                         defaultValue={defaultValue?.status === 'Active' ? 0 : 1}>
+//                         <Radio.Button className='active' value={1}>
+//                           Active
+//                         </Radio.Button>
+//                         <Radio.Button className='in-active' value={0}>
+//                           In-Active
+//                         </Radio.Button>
+//                       </Radio.Group>
+//                     </Col>
+//                   </Form.Item>
+//                 </Col>
+//                 <Col span={24}>
+//                   <Row gutter={[15, 15]} style={{justifyContent: 'end'}}>
+//                     <Col span={12} style={{textAlign: 'right'}} className='d-flex align-items-center justify-content-end mt-3'>
+//                       <Form.Item className='mx-2'>
+//                         <Button className='orangeFactory' type='primary' htmlType='submit' loading={savingLicense} disabled={savingLicense}>
+//                           {isEdit ? 'Update' : 'Add'}
+//                         </Button>
+//                       </Form.Item>
+//                       {/* </Col>
+//                     <Col span={12}> */}
+//                       <Form.Item>
+//                         <Button onClick={handleClickBack} disabled={savingLicense}>
+//                           Back
+//                         </Button>
+//                       </Form.Item>
+//                     </Col>
+//                   </Row>
+//                 </Col>
+//               </Row>
+//             </Form>
+//           </Col>
+//         </Row>
+//       </Card>
+//     </>
+//   );
+// }
+
+// export default LicenseForm;
+

@@ -1,0 +1,15 @@
+export const column = [
+  { key: '1', headerName: 'S.No', field: 'S.No', hide: false, width: 70 },
+  { key: '2', headerName: 'Employee Name', field: 'name', hide: false, width: 130 },
+  { key: '3', headerName: 'Role', field: 'role', hide: false, width: 210 },
+  { key: '4', headerName: 'State', field: 'state', hide: false, width: 250 },
+  { key: '5', headerName: 'Zone', field: 'zone', hide: false, width: 250 },
+  { key: '6', headerName: 'SubZone', field: 'subzone', hide: false, width: 250 },
+  { key: '7', headerName: 'Outlet', field: 'outlet', hide: false, width: 250 },
+  { key: '8', headerName: 'Module', field: 'module', hide: false, width: 250 },
+  { key: '9', headerName: 'sub Module', field: 'submodule', hide: false, width: 250 },
+  { key: '10', headerName: 'Module screen', field: 'module_Screen', hide: false, width: 250 },
+  { key: '11', headerName: 'Report', field: 'report', hide: false, width: 250 },
+  { key: '12', headerName: 'Reporting To', field: 'report_to', hide: false, width: 250 },
+  { key: '13', headerName: 'Status', field: 'status', hide: false, width: 120 },
+];

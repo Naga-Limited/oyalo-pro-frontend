@@ -1,0 +1,34 @@
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #3f3e3d;
+    width: 100%;
+   
+    display : inline-block;
+  }
+
+  .ant-tabs-nav-list {
+    width: 100%;
+    justify-content: center;
+    display :inline-block;
+   
+  }
+  .ant-tabs-tab {
+    background-color:#494b4d !important;
+    color: #F4A50D !important;
+    border-radius:8px;
+    display :inline-block;
+ 
+    font-weight: bold;
+
+  }
+  .ant-tabs-tab-active {
+    background-color:#F4A50D !important;
+    color: #494b4d !important;
+    border-radius: 8px;
+    display : inline-block;
+    /* width: 300px; */
+  
+    font-weight: bold;
+  
+  }
+
+

@@ -1,0 +1,70 @@
+
+import { format } from 'date-fns';
+
+function getEntryDate(params) {
+  return `${format(new Date(params.row.tran_date), 'dd-MM-yyyy') }`;
+}
+function getSettlementDate(params) {
+  return `${format(new Date(params.row.settlement_date), 'dd-MM-yyyy') }`;
+}
+
+export const column = [
+  { key: '1', headerName: 'S.No', field: 'id', hide: false, width: 100 },
+  { key: '2', headerName: 'Outlet Code', field: 'outlet_code', hide: false, width: 100 },
+  { key: '3', headerName: 'Outlet Name', field: 'outlet_name', hide: false, width: 270 }, 
+  { key: '4', headerName: 'Trans Date', field: 'tran_date', hide: false, width: 140,
+  valueGetter:getEntryDate},
+  { key: '5', headerName: 'Settlement Date', field: 'settlement_date', hide: false, width: 140,
+  valueGetter:getSettlementDate },  
+  { key: '6', headerName: 'Swiggy Id', field: 'swiggy_id', hide: false, width: 180 },
+  { key: '7', headerName: 'Order No', field: 'order_no', hide: false, width: 258 }, 
+  { key: '8', headerName: 'UTR', field: 'utr', hide: false, width: 258 }, 
+  { key: '9', headerName: 'Gross Amount', field: 'gross_amt', hide: false, width: 180 },   
+  { key: '10', headerName: 'cancelled_by', field: 'cancelled_by', hide: false, width: 140 },   
+  { key: '11', headerName: 'Items_total_A', field: 'items_total_A', hide: false, width: 140 },   
+  { key: '12', headerName: 'Packing_service_charges_B', field: 'packing_service_charges_B', hide: false, width: 140 },   
+  { key: '13', headerName: 'Merchant_discount_C', field: 'merchant_discount_C', hide: false, width: 140 },   
+  { key: '14', headerName: 'Customer_payable_net_bill_value_after_taxes_discount', field: 'customer_payable_net_bill_value_after_taxes_discount', hide: false, width: 140 },   
+  { key: '15', headerName: 'Swiggy_platform_service_fee_chargeable_on_D_or_F_free_del_dis', field: 'swiggy_platform_service_fee_chargeable_on_D_or_F_free_del_dis', hide: false, width: 140 },   
+  { key: '16', headerName: 'Swiggy_platform_service_fee_percentage', field: 'swiggy_platform_service_fee_percentage', hide: false, width: 140 },   
+  { key: '17', headerName: 'Discount_on_swiggy_platform_service_fee', field: 'discount_on_swiggy_platform_service_fee', hide: false, width: 140 },   
+  { key: '18', headerName: 'Total_long_distance_subscription_fees', field: 'total_long_distance_subscription_fees', hide: false, width: 140 },   
+  { key: '19', headerName: 'Total_discount_on_long_distance_subscription_fees', field: 'total_discount_on_long_distance_subscription_fees', hide: false, width: 140 },   
+  { key: '20', headerName: 'Total_effective_long_distance_subscription_fees', field: 'total_effective_long_distance_subscription_fees', hide: false, width: 140 },   
+  { key: '21', headerName: 'Collection_charges', field: 'collection_charges', hide: false, width: 140 },   
+  { key: '22', headerName: 'Access_charges', field: 'access_charges', hide: false, width: 140 },   
+  { key: '23', headerName: 'Merchant_cancellation_charges', field: 'merchant_cancellation_charges', hide: false, width: 140 },   
+  { key: '24', headerName: 'Call_center_service_fees', field: 'call_center_service_fees', hide: false, width: 140 },   
+  { key: '25', headerName: 'Delivery_fee_sponsored_by_merchant_R1_w_o_tax', field: 'delivery_fee_sponsored_by_merchant_R1_w_o_tax', hide: false, width: 140 },   
+  { key: '26', headerName: 'Taxes_on_swiggy_fee_Including_cess', field: 'taxes_on_swiggy_fee_Including_cess', hide: false, width: 140 },   
+  { key: '27', headerName: 'Total_swiggy_fee_including_taxes', field: 'total_swiggy_fee_including_taxes', hide: false, width: 140 },   
+  { key: '28', headerName: 'Cash_repayment_to_merchant', field: 'cash_repayment_to_merchant', hide: false, width: 140 },   
+  { key: '29', headerName: 'Merchant_share_of_cancelled_orders', field: 'merchant_share_of_cancelled_orders', hide: false, width: 140 },   
+  { key: '30', headerName: 'GST_deduction', field: 'GST_deduction', hide: false, width: 140 },   
+  { key: '31', headerName: 'Refund_for_disputed_order', field: 'refund_for_disputed_order', hide: false, width: 140 },   
+  { key: '32', headerName: 'disputed_order_remarks', field: 'disputed_order_remarks', hide: false, width: 140 },   
+  { key: '33', headerName: 'Total_of_order_level_adjustments', field: 'total_of_order_level_adjustments', hide: false, width: 140 },   
+  { key: '34', headerName: 'TCS_U1', field: 'tcs_U1', hide: false, width: 140 },   
+  { key: '35', headerName: 'MFR_pressed', field: 'MFR_pressed', hide: false, width: 140 },   
+  { key: '36', headerName: 'Cancellation_policy_applied', field: 'cancellation_policy_applied', hide: false, width: 140 },   
+  { key: '37', headerName: 'Coupon_code_sourced', field: 'coupon_code_sourced', hide: false, width: 140 },   
+  { key: '38', headerName: 'Discount_campaign_ID', field: 'discount_campaign_ID', hide: false, width: 140 },   
+  { key: '39', headerName: 'IS_Replicated', field: 'is_replicated', hide: false, width: 140 },   
+  { key: '40', headerName: 'Base_order_ID', field: 'base_order_ID', hide: false, width: 140 },   
+  { key: '41', headerName: 'MRP_items', field: 'MRP_items', hide: false, width: 140 },   
+  { key: '42', headerName: 'Order_payment_type', field: 'order_payment_type', hide: false, width: 140 },   
+  { key: '43', headerName: 'Cancellation_time', field: 'cancellation_time', hide: false, width: 140 },   
+  { key: '44', headerName: 'Pick_up_status', field: 'pick_up_status', hide: false, width: 140 },   
+  { key: '45', headerName: 'Coupon_code_applied_by_customer', field: 'coupon_code_applied_by_customer', hide: false, width: 140 },   
+  { key: '46', headerName: 'Nodal_UTR', field: 'nodal_UTR', hide: false, width: 140 },   
+  { key: '47', headerName: 'Long_distance_applicable', field: 'long_distance_applicable', hide: false, width: 140 },   
+  { key: '48', headerName: 'Parent_order_id', field: 'parent_order_id', hide: false, width: 140 },  
+  { key: '49', headerName: 'TDS_U2', field: 'tds_u2', hide: false, width: 140 },    
+  { key: '50', headerName: 'Order Status', field: 'order_status', hide: false, width: 140 },  
+  { key: '51', headerName: 'Order Category', field: 'order_category', hide: false, width: 140 },  
+  { key: '52', headerName: 'Last Mile Distance', field: 'last_mile', hide: false, width: 140 },  
+  { key: '53', headerName: 'Total Swiggy Service Fee', field: 'total_swiggy_service_fee', hide: false, width: 140 },  
+  { key: '54', headerName: 'GST liability of Merchant (Including Cess) E', field: 'GST_liability_of_merchant', hide: false, width: 240 },  
+  { key: '55', headerName: 'Net Payable Amount (after TCS and TDS deduction) V = T - U1 - U2', field:'net_payable_after_tds_tcs_deduction', hide: false, width: 140 },
+  { key: '56', headerName: 'Net Payable Amount (before TCS deduction) T = (F - P - S)', field:'net_payable_bf_tcs_deduction', hide: false, width: 140 }
+];

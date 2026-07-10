@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # React Frontend Application
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: oyalo_pro_frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
+      - REACT_APP_X_API_KEY=${REACT_APP_X_API_KEY}
+      - REACT_APP_PROJECT_ID=${REACT_APP_PROJECT_ID}
+      - REACT_APP_VERSION=${REACT_APP_VERSION}
+      - PUBLIC_URL=${PUBLIC_URL}
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    tty: true
+    networks:
+      - oyalo_network
+
+  # Production build (use this for production deployment)
+  frontend-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+      args:
+        REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL}
+        REACT_APP_X_API_KEY: ${REACT_APP_X_API_KEY}
+        PUBLIC_URL: ${PUBLIC_URL}
+        REACT_APP_VERSION: ${REACT_APP_VERSION}
+    container_name: oyalo_pro_frontend_prod
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - oyalo_network
+    profiles:
+      - production
+
+networks:
+  oyalo_network:
+    driver: bridge

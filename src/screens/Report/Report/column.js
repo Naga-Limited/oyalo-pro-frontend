@@ -1,0 +1,73 @@
+export const column = [
+  {
+    key: "1",
+    headerName: "S.No",
+    field: "S.No",
+    hide: false,
+    width: 60,
+  },
+  {
+    key: "3",
+    headerName: "Employee Name",
+    field: "name",
+    hide: false,
+    width: 160,
+  },
+  {
+    key: "4",
+    headerName: "Employee code",
+    field: "employee_code",
+    hide: false,
+    width: 160,
+  },
+  {
+    key: "5",
+    headerName: "Division Name",
+    field: "division_name",
+    hide: false,
+    width: 125,
+  },
+  {
+    key: "6",
+    headerName: "Location",
+    field: "location",
+    hide: false,
+    width: 250,
+  },
+  {
+    key: "7",
+    headerName: "User Mobile No",
+    field: "contact",
+    hide: false,
+    width: 190,
+  },
+  {
+    key: "8",
+    headerName: "User Email",
+    field: "email",
+    hide: false,
+    width: 210,
+  },
+
+  {
+    key: "8",
+    headerName: "Active Status",
+    field: "Status",
+    hide: false,
+    width: 110,
+  },
+  {
+    key: "9",
+    headerName: "Login Date Time",
+    field: "logindate",
+    hide: false,
+    width: 170,
+  },
+  {
+    key: "9",
+    headerName: "Login Statue",
+    field: "loginstatus",
+    hide: false,
+    width: 115,
+  },
+];

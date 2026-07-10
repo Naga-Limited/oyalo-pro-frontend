@@ -1,0 +1,14 @@
+# This file is for reference only - Nginx doesn't use .htaccess
+# The rules have been converted to Nginx configuration in default.conf
+
+# Original .htaccess rules:
+# RewriteEngine On
+# RewriteBase /
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule . /index.html [L]
+
+# Converted to Nginx:
+# location / {
+#     try_files $uri $uri/ /index.html;
+# }
