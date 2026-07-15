@@ -74,8 +74,11 @@ RUN npm install --legacy-peer-deps
 # Copy application files
 COPY . .
 
-# Expose port 3000
-EXPOSE 3000
+# Set default port (can be overridden by environment variable)
+ENV PORT=4004
+
+# Expose port
+EXPOSE ${PORT}
 
 # Start development server
 CMD ["npm", "start"]

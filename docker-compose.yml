@@ -16,6 +16,7 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
+      - PORT=3000
       - REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
       - REACT_APP_X_API_KEY=${REACT_APP_X_API_KEY}
       - REACT_APP_PROJECT_ID=${REACT_APP_PROJECT_ID}
