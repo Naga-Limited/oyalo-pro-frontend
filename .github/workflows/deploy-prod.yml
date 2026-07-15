@@ -58,7 +58,6 @@ jobs:
       - name: Force deploy to ECS Fargate
         run: |
           aws ecs update-service \
-            --cluster "${{ secrets.ECS_CLUSTER_PROD }}" \
-            --service "${{ secrets.ECS_SERVICE_PROD }}" \
-            --force-new-deployment \
-            --region "${{ env.AWS_REGION }}"
+            --cluster $ECS_CLUSTER_PROD \
+            --service $ECS_SERVICE_PROD \
+            --force-new-deployment
