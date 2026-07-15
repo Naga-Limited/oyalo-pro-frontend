@@ -36,19 +36,20 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            -t $ECR_REPOSITORY:latest \
+            -t ${{ env.ECR_REPOSITORY }}:latest \
+            --target production \
             .
 
       - name: Tag Docker image
         run: |
           docker tag \
-            $ECR_REPOSITORY:latest \
-            ${{ steps.login-ecr.outputs.registry }}/$ECR_REPOSITORY:latest
+            ${{ env.ECR_REPOSITORY }}:latest \
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
 
       - name: Push Docker image to Amazon ECR
         run: |
           docker push \
-            ${{ steps.login-ecr.outputs.registry }}/$ECR_REPOSITORY:latest
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
 
   
       - name: Wait for ECR image to be fully available
@@ -57,6 +58,7 @@ jobs:
       - name: Force deploy to ECS Fargate
         run: |
           aws ecs update-service \
-            --cluster $ECS_CLUSTER_PROD \
-            --service $ECS_SERVICE_PROD \
-            --force-new-deployment
+            --cluster "${{ secrets.ECS_CLUSTER_PROD }}" \
+            --service "${{ secrets.ECS_SERVICE_PROD }}" \
+            --force-new-deployment \
+            --region "${{ env.AWS_REGION }}"
