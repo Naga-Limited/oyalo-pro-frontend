@@ -44,7 +44,7 @@ docker-compose up -d
 docker-compose logs -f frontend
 ```
 
-Access the app at: http://localhost:3000
+Access the app at: http://localhost:4004
 
 #### Production Mode
 
@@ -72,7 +72,7 @@ npm start
 
 | Service | Container Name | Port | Mode | Description |
 |---------|---------------|------|------|-------------|
-| frontend | oyalo_pro_frontend | 3000 | Development | React dev server with hot reload |
+| frontend | oyalo_pro_frontend | 4004 | Development | React dev server with hot reload |
 | frontend-prod | oyalo_pro_frontend_prod | 80 | Production | Nginx serving optimized build |
 
 ## 🔧 Environment Variables
@@ -88,7 +88,7 @@ REACT_APP_VERSION=1.0.0
 NODE_ENV=development
 
 # API Configuration
-REACT_APP_API_BASE_URL=http://localhost:8000/api/
+REACT_APP_API_BASE_URL=http://localhost:4003/api/
 
 # API Security
 REACT_APP_X_API_KEY=your-api-key-here
@@ -97,7 +97,7 @@ REACT_APP_X_API_KEY=your-api-key-here
 PUBLIC_URL=/
 
 # Port
-PORT=3000
+PORT=4004
 ```
 
 ### Production Environment
@@ -364,7 +364,7 @@ Check:
 
 ```bash
 # Test API connection
-curl -H "X-API-KEY: your-key" http://localhost:8000/api/health
+curl -H "X-API-KEY: your-key" http://localhost:4003/api/health
 ```
 
 ### Docker container won't start
@@ -373,8 +373,8 @@ curl -H "X-API-KEY: your-key" http://localhost:8000/api/health
 # Check logs
 docker-compose logs frontend
 
-# Check if port 3000 is in use
-netstat -ano | findstr :3000
+# Check if port 4004 is in use
+netstat -ano | findstr :4004
 
 # Restart with clean state
 docker-compose down -v

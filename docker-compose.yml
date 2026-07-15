@@ -7,10 +7,10 @@ services:
       context: .
       dockerfile: Dockerfile
       target: development
-    container_name: oyalo_pro_frontend
+    container_name: prod-oyalo-pro-frontend
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "4004:3000"
     volumes:
       - ./:/app
       - /app/node_modules
@@ -39,10 +39,10 @@ services:
         REACT_APP_X_API_KEY: ${REACT_APP_X_API_KEY}
         PUBLIC_URL: ${PUBLIC_URL}
         REACT_APP_VERSION: ${REACT_APP_VERSION}
-    container_name: oyalo_pro_frontend_prod
+    container_name: prod-oyalo-pro-frontend-prod
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "4004:80"
     networks:
       - oyalo_network
     profiles:
