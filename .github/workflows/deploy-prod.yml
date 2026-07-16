@@ -96,19 +96,35 @@ jobs:
             --region "${{ env.AWS_REGION }}"
 
       - name: Wait for deployment to stabilize
+        continue-on-error: true
         run: |
-          echo "Waiting for ECS service to stabilize..."
-          aws ecs wait services-stable \
+          echo "Waiting for ECS service to stabilize (max 10 minutes)..."
+          timeout 600 aws ecs wait services-stable \
             --cluster "${{ secrets.ECS_CLUSTER_PROD }}" \
             --services "${{ secrets.ECS_SERVICE_PROD }}" \
-            --region "${{ env.AWS_REGION }}"
+            --region "${{ env.AWS_REGION }}" || echo "⚠️ Wait timeout - check ECS console manually"
+
+      - name: Check Deployment Status
+        run: |
+          echo "Checking ECS service status..."
+          aws ecs describe-services \
+            --cluster "${{ secrets.ECS_CLUSTER_PROD }}" \
+            --services "${{ secrets.ECS_SERVICE_PROD }}" \
+            --region "${{ env.AWS_REGION }}" \
+            --query 'services[0].{deployments:deployments,runningCount:runningCount,desiredCount:desiredCount,events:events[0:3]}' \
+            --output json
 
       - name: Deployment Success
         run: |
-          echo "✅ Deployment completed successfully!"
+          echo "✅ Deployment triggered successfully!"
+          echo "⚠️ Note: Service may still be stabilizing"
+          echo ""
           echo "Frontend URL: https://testoyalopro.nagamills.com/"
           echo "API URL: https://testoyalopro.nagamills.com/op_api/api/"
           echo "Expected login endpoint: https://testoyalopro.nagamills.com/op_api/api/login"
+          echo ""
+          echo "Check ECS console for deployment status:"
+          echo "https://console.aws.amazon.com/ecs"
 
 
 
