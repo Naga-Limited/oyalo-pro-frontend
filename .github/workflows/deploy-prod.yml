@@ -22,6 +22,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build React App with Test Environment
+        env:
+          REACT_APP_PROJECT_ID: oyaloPro
+          REACT_APP_VERSION: ${{ github.sha }}
+          NODE_ENV: production
+          REACT_APP_API_BASE_URL: https://testoyalopro.nagamills.com/op_api/api/
+          REACT_APP_X_API_KEY: ${{ secrets.REACT_APP_X_API_KEY }}
+          PUBLIC_URL: https://testoyalopro.nagamills.com/
+        run: npm run build
+
+      - name: Verify Build Contains Correct API URL
+        run: |
+          echo "Checking if build contains correct API URL..."
+          if grep -r "testoyalopro.nagamills.com/op_api/api" build/static/js/*.js; then
+            echo "✅ Build contains correct API URL"
+          else
+            echo "❌ Build does NOT contain correct API URL"
+            exit 1
+          fi
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -33,11 +62,14 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build Docker image
+      - name: Build Docker image (with pre-built files)
         run: |
           docker build \
             -t ${{ env.ECR_REPOSITORY }}:latest \
             --target production \
+            --build-arg REACT_APP_API_BASE_URL=https://testoyalopro.nagamills.com/op_api/api/ \
+            --build-arg REACT_APP_X_API_KEY=${{ secrets.REACT_APP_X_API_KEY }} \
+            --build-arg PUBLIC_URL=https://testoyalopro.nagamills.com/ \
             .
 
       - name: Tag Docker image
@@ -58,9 +90,25 @@ jobs:
       - name: Force deploy to ECS Fargate
         run: |
           aws ecs update-service \
-            --cluster $ECS_CLUSTER \
-            --service $ECS_SERVICE \
-            --force-new-deployment
+            --cluster "${{ secrets.ECS_CLUSTER_PROD }}" \
+            --service "${{ secrets.ECS_SERVICE_PROD }}" \
+            --force-new-deployment \
+            --region "${{ env.AWS_REGION }}"
+
+      - name: Wait for deployment to stabilize
+        run: |
+          echo "Waiting for ECS service to stabilize..."
+          aws ecs wait services-stable \
+            --cluster "${{ secrets.ECS_CLUSTER_PROD }}" \
+            --services "${{ secrets.ECS_SERVICE_PROD }}" \
+            --region "${{ env.AWS_REGION }}"
+
+      - name: Deployment Success
+        run: |
+          echo "✅ Deployment completed successfully!"
+          echo "Frontend URL: https://testoyalopro.nagamills.com/"
+          echo "API URL: https://testoyalopro.nagamills.com/op_api/api/"
+          echo "Expected login endpoint: https://testoyalopro.nagamills.com/op_api/api/login"
 
 
 
