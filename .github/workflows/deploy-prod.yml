@@ -36,7 +36,7 @@ jobs:
           REACT_APP_PROJECT_ID: oyaloPro
           REACT_APP_VERSION: ${{ github.sha }}
           NODE_ENV: production
-          REACT_APP_API_BASE_URL: https://testoyalopro.nagamills.com/op_api/api/
+          REACT_APP_API_BASE_URL: https://testoyalopro.nagamills.com/api/
           REACT_APP_X_API_KEY: ${{ secrets.REACT_APP_X_API_KEY }}
           PUBLIC_URL: https://testoyalopro.nagamills.com/
         run: npm run build
@@ -48,7 +48,7 @@ jobs:
           ls -lh build/static/js/
           echo ""
           echo "Searching for API URL in JavaScript files..."
-          if grep -l "testoyalopro\.nagamills\.com/op_api/api" build/static/js/*.js | head -1; then
+          if grep -l "testoyalopro\.nagamills\.com/api" build/static/js/*.js | head -1; then
             echo "✅ Build contains correct TEST API URL"
             grep -o "https://testoyalopro[^\"]*" build/static/js/main.*.js | head -3
           else
