@@ -15,7 +15,7 @@ COPY build /usr/share/nginx/html
 
 # Add health check script
 RUN echo '#!/bin/sh' > /healthcheck.sh && \
-    echo 'curl -f http://localhost/ || exit 1' >> /healthcheck.sh && \
+    echo 'curl -f http://localhost:4004/ || exit 1' >> /healthcheck.sh && \
     chmod +x /healthcheck.sh && \
     apk add --no-cache curl
 
@@ -23,8 +23,8 @@ RUN echo '#!/bin/sh' > /healthcheck.sh && \
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
     CMD /healthcheck.sh
 
-# Expose port 80
-EXPOSE 80
+# Expose port 4004 (AWS requirement)
+EXPOSE 4004
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
